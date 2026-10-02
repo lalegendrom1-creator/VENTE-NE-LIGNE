@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Search, ArrowRight, Sparkles, Palette, Heart, ShoppingBag, GraduationCap, Users, Star, TrendingUp, Zap } from 'lucide-react';
 import { Container, SectionTitle } from '@/components/Layout';
 import ProductCard from '@/components/ProductCard';
@@ -8,6 +8,7 @@ import { useApp } from '@/context/AppContext';
 
 export default function Home() {
   const { currency } = useApp();
+  const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState('');
 
   const popularProducts = products.filter(p => p.isBestSeller || p.isOnSale).slice(0, 8);
@@ -44,7 +45,7 @@ export default function Home() {
 
             {/* Search bar */}
             <div className="mt-8 max-w-xl">
-              <form onSubmit={e => { e.preventDefault(); if (searchValue) window.location.href = `/recherche?q=${encodeURIComponent(searchValue)}`; }}>
+              <form onSubmit={e => { e.preventDefault(); if (searchValue) navigate(`/recherche?q=${encodeURIComponent(searchValue)}`); }}>
                 <div className="flex items-center gap-3 bg-white rounded-2xl px-5 py-4 shadow-2xl">
                   <Search className="w-5 h-5 text-slate-400 flex-shrink-0" />
                   <input

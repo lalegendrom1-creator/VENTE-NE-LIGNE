@@ -36,7 +36,7 @@ import Admin from '@/pages/Admin';
 export default function App() {
   return (
     <AppProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/VENTE-NE-LIGNE">
         <Layout>
           <Header />
           <main className="flex-1 pb-20 lg:pb-0">
